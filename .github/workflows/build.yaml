@@ -1,0 +1,30 @@
+name: Build and push Docker image
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build --file ./Dockerfile --tag ghcr.io/vitek-dev/qa:latest .
+
+      - name: Push image to Registry
+        run: docker push ghcr.io/vitek-dev/qa:latest
