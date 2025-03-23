@@ -1,4 +1,4 @@
-FROM php:8.3-bookworm
+FROM php:8.4-bookworm
 
 # system updates & dependencies
 RUN apt-get update && apt-get install -y \
@@ -36,7 +36,6 @@ RUN ln -s $HOME/.composer/vendor/bin/phpcs /usr/local/bin/phpcs \
     && ln -s $HOME/.composer/vendor/bin/phpcbf /usr/local/bin/phpcbf \
     && ln -s $HOME/.composer/vendor/bin/phpcbf /usr/local/bin/cbf \
     && phpcs --config-set installed_paths $HOME/.composer/vendor/slevomat/coding-standard,$HOME/.composer/vendor/vitek-dev/coding-standard
-#    && phpcs --config-set installed_paths $HOME/.composer/vendor/slevomat/coding-standard
 
 # phpstan
 RUN ln -s $HOME/.composer/vendor/bin/phpstan /usr/local/bin/phpstan \
