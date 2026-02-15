@@ -23,7 +23,7 @@ RUN composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffe
 
 # Install QA tools globally with Composer
 RUN composer global config repositories.vd-coding-standard git https://github.com/vitek-dev/coding-standard.git \
-    && composer global require -a -o --no-interaction --prefer-stable --dev \
+    && composer global require -a -o --no-interaction --prefer-stable --dev --ignore-platform-reqs \
         phpstan/phpstan \
         squizlabs/php_codesniffer \
         qossmic/deptrac \
