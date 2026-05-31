@@ -1,0 +1,5 @@
+# PHPStan baseline — records pre-existing errors so they're ignored until fixed.
+# Regenerate after adopting/raising the level:
+#   docker run --rm -v "$PWD":/app ghcr.io/vitek-dev/qa:v8.4 phpstan analyse --generate-baseline
+parameters:
+    ignoreErrors: []

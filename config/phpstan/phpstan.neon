@@ -1,0 +1,8 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5 # Adjust the level (0-9 or max)
+    paths:
+        - src
+    # excludes_analyse:

@@ -1,0 +1,30 @@
+deptrac:
+  paths:
+    - ./src
+  exclude_files:
+    - '#.*[Tt]est.*#'
+  layers:
+    # Layers are matched by directory, so this works for any bounded context
+    # under src/<Context>/{Domain,Application,Infrastructure} without naming them.
+    - name: Domain
+      collectors:
+        - type: directory
+          value: src/[^/]+/Domain/.*
+    - name: Application
+      collectors:
+        - type: directory
+          value: src/[^/]+/Application/.*
+    - name: Infrastructure
+      collectors:
+        - type: directory
+          value: src/[^/]+/Infrastructure/.*
+  ruleset:
+    # Domain is pure: it may depend on nothing else in src.
+    Domain: ~
+    # Application may depend only on Domain.
+    Application:
+      - Domain
+    # Infrastructure wires everything together.
+    Infrastructure:
+      - Application
+      - Domain
